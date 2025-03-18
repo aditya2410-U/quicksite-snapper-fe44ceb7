@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBuilder } from "@/context/BuilderContext";
 import StepIndicator from "@/components/StepIndicator";
@@ -17,6 +17,15 @@ const TemplatePage: React.FC = () => {
     matchedKeyword,
     setCurrentStep
   } = useBuilder();
+  
+  const [searchTerm, setSearchTerm] = useState("");
+  
+  const filteredTemplates = searchTerm.trim() 
+    ? generatedWebsites.filter(template => 
+        template.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        template.keyword.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : generatedWebsites;
 
   const handleBack = () => {
     navigate("/describe");
@@ -48,13 +57,15 @@ const TemplatePage: React.FC = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <Input
                 className="pl-10"
-                placeholder={`${matchedKeyword || "agency"}, consultant, saas`}
+                placeholder={`${matchedKeyword || "pdhome"}, freyrs, tufanrugs`}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-            {generatedWebsites.map((template) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {filteredTemplates.map((template) => (
               <TemplateCard 
                 key={template.id}
                 template={template}

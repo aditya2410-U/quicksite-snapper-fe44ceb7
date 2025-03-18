@@ -11,7 +11,16 @@ const Index: React.FC = () => {
       </div>
       
       <div className="flex-grow py-12 px-4 sm:px-6 flex items-center justify-center">
-        <WebsiteForm />
+        <div className="max-w-4xl w-full mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">Website Builder</h1>
+            <p className="text-lg text-gray-600">
+              Create stunning websites for businesses like PDHome, Freyrs, 
+              Tufan Rugs, and more in minutes!
+            </p>
+          </div>
+          <WebsiteForm />
+        </div>
       </div>
     </div>
   );
