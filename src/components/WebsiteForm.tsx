@@ -132,7 +132,7 @@ const WebsiteForm: React.FC = () => {
           </Select>
         </div>
 
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <Label htmlFor="scrape-url" className="text-sm font-medium">
             Site to scrape data from:
           </Label>
@@ -158,7 +158,7 @@ const WebsiteForm: React.FC = () => {
             className="w-full"
           />
           <p className="text-xs text-gray-500">Enter a website that has a design style you like</p>
-        </div>
+        </div> */}
         
         <Button 
           type="submit" 

@@ -76,7 +76,7 @@ const DescribePage: React.FC = () => {
       setGeneratedWebsites(uniqueTemplates);
       setCurrentStep(3);
       setIsLoading(false);
-      navigate("/templates");
+      navigate("/scrape");
     }, 1500); // Simulate 1.5 seconds of "AI" processing
   };
 

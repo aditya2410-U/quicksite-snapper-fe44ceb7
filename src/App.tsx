@@ -12,6 +12,7 @@ import TemplatePage from "./pages/TemplatePage";
 import GeneratingPage from "./pages/GeneratingPage";
 import ResultPage from "./pages/ResultPage";
 import NotFound from "./pages/NotFound";
+import ScrapePage from "./pages/ScrapePage";
 
 const queryClient = new QueryClient();
 
@@ -25,10 +26,10 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/describe" element={<DescribePage />} />
+            <Route path="/scrape" element={<ScrapePage />} />
             <Route path="/templates" element={<TemplatePage />} />
             <Route path="/generating" element={<GeneratingPage />} />
             <Route path="/result" element={<ResultPage />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
