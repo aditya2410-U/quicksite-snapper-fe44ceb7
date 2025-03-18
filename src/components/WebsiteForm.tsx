@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBuilder } from "@/context/BuilderContext";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { BUSINESS_TYPES, BusinessType } from "@/context/BuilderContext";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const WebsiteForm: React.FC = () => {
   const navigate = useNavigate();
@@ -23,6 +27,8 @@ const WebsiteForm: React.FC = () => {
     setReferenceUrl,
     setCurrentStep
   } = useBuilder();
+
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,19 +66,47 @@ const WebsiteForm: React.FC = () => {
           <Label htmlFor="business-type" className="text-sm font-medium">
             This website is for: <span className="text-red-500">*</span>
           </Label>
-          <Select
-            value={businessType}
-            onValueChange={(value) => setBusinessType(value as BusinessType)}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select business type" />
-            </SelectTrigger>
-            <SelectContent>
-              {BUSINESS_TYPES.map((type) => (
-                <SelectItem key={type} value={type}>{type}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                role="combobox"
+                aria-expanded={open}
+                className="w-full justify-between"
+              >
+                {businessType ? businessType : "Select business type"}
+                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-full p-0">
+              <Command>
+                <CommandInput placeholder="Search business type..." />
+                <CommandEmpty>No business type found.</CommandEmpty>
+                <CommandGroup>
+                  <CommandList>
+                    {BUSINESS_TYPES.map((type) => (
+                      <CommandItem
+                        key={type}
+                        value={type}
+                        onSelect={() => {
+                          setBusinessType(type as BusinessType);
+                          setOpen(false);
+                        }}
+                      >
+                        <Check
+                          className={cn(
+                            "mr-2 h-4 w-4",
+                            businessType === type ? "opacity-100" : "opacity-0"
+                          )}
+                        />
+                        {type}
+                      </CommandItem>
+                    ))}
+                  </CommandList>
+                </CommandGroup>
+              </Command>
+            </PopoverContent>
+          </Popover>
         </div>
         
         <div className="space-y-2">
