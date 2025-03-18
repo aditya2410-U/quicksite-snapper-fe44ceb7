@@ -1,10 +1,15 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
+export type BusinessType = "HomeDecor" | "Wearables" | "Lighting";
+
+export const BUSINESS_TYPES: BusinessType[] = ["HomeDecor", "Wearables", "Lighting"];
+
 interface Template {
   id: string;
   name: string;
   keyword: string;
+  description: string;
   previewImage: string;
   demoUrl: string;
   isPremium?: boolean;
@@ -13,8 +18,8 @@ interface Template {
 interface BuilderContextType {
   websiteName: string;
   setWebsiteName: (name: string) => void;
-  businessType: string;
-  setBusinessType: (type: string) => void;
+  businessType: BusinessType | "";
+  setBusinessType: (type: BusinessType | "") => void;
   language: string;
   setLanguage: (lang: string) => void;
   description: string;
@@ -28,19 +33,28 @@ interface BuilderContextType {
   setCurrentStep: (step: number) => void;
   generatedWebsites: Template[];
   setGeneratedWebsites: (websites: Template[]) => void;
+  isLoading: boolean;
+  setIsLoading: (loading: boolean) => void;
+  scrapeUrl: string;
+  setScrapeUrl: (url: string) => void;
+  referenceUrl: string;
+  setReferenceUrl: (url: string) => void;
 }
 
 const BuilderContext = createContext<BuilderContextType | undefined>(undefined);
 
 export const BuilderProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [websiteName, setWebsiteName] = useState("");
-  const [businessType, setBusinessType] = useState("");
+  const [businessType, setBusinessType] = useState<BusinessType | "">("");
   const [language, setLanguage] = useState("English");
   const [description, setDescription] = useState("");
   const [selectedTemplates, setSelectedTemplates] = useState<string[]>([]);
   const [matchedKeyword, setMatchedKeyword] = useState<string | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [generatedWebsites, setGeneratedWebsites] = useState<Template[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [scrapeUrl, setScrapeUrl] = useState("");
+  const [referenceUrl, setReferenceUrl] = useState("");
 
   const toggleTemplateSelection = (templateId: string) => {
     setSelectedTemplates(prev => 
@@ -69,6 +83,12 @@ export const BuilderProvider: React.FC<{ children: ReactNode }> = ({ children })
       setCurrentStep,
       generatedWebsites,
       setGeneratedWebsites,
+      isLoading,
+      setIsLoading,
+      scrapeUrl,
+      setScrapeUrl,
+      referenceUrl,
+      setReferenceUrl,
     }}>
       {children}
     </BuilderContext.Provider>

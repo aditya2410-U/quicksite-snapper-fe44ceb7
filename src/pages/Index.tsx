@@ -5,7 +5,7 @@ import WebsiteForm from "@/components/WebsiteForm";
 
 const Index: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-secondary">
       <div className="sticky top-0 z-10">
         <StepIndicator />
       </div>

@@ -3,7 +3,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useBuilder } from "@/context/BuilderContext";
 import { Template } from "@/data/templates";
-import { Check, ExternalLink, Info } from "lucide-react";
+import { Check, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -21,20 +21,23 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
       className={cn(
         "relative rounded-xl overflow-hidden border transition-all duration-300 group",
         isSelected 
-          ? "border-blue-500 shadow-md shadow-blue-100" 
+          ? "border-primary shadow-md shadow-primary/10" 
           : "border-gray-200 hover:border-gray-300"
       )}
     >
       {template.isPremium && (
         <Badge 
           variant="default" 
-          className="absolute top-4 right-4 bg-gradient-to-r from-purple-600 to-pink-600 z-10"
+          className="absolute top-4 right-4 bg-gradient-to-r from-primary to-purple-600 z-10"
         >
           PREMIUM
         </Badge>
       )}
       
-      <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden">
+      <div 
+        className="relative aspect-[4/3] bg-gray-100 overflow-hidden cursor-pointer"
+        onClick={() => toggleTemplateSelection(template.id)}
+      >
         <img 
           src={template.previewImage} 
           alt={template.name} 
@@ -49,19 +52,12 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
           <div className="flex gap-2">
             <Button 
               size="sm" 
-              variant="outline" 
-              className="bg-white text-gray-900 hover:bg-gray-50 border-transparent"
-              onClick={() => window.open(template.demoUrl, '_blank')}
-            >
-              <ExternalLink className="w-4 h-4 mr-2" />
-              Preview
-            </Button>
-            
-            <Button 
-              size="sm" 
               variant={isSelected ? "default" : "outline"}
-              className={isSelected ? "bg-blue-500 text-white" : "bg-white text-gray-900 hover:bg-gray-50"}
-              onClick={() => toggleTemplateSelection(template.id)}
+              className={isSelected ? "bg-primary text-white" : "bg-white text-gray-900 hover:bg-gray-50"}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleTemplateSelection(template.id);
+              }}
             >
               {isSelected && <Check className="w-4 h-4 mr-2" />}
               {isSelected ? "Selected" : "Select"}
@@ -87,23 +83,13 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
           </TooltipProvider>
         </div>
         
-        <div className="flex items-center justify-between mt-2">
-          <Button 
-            size="sm" 
-            variant="ghost" 
-            className="text-sm text-blue-500 p-0 h-auto hover:bg-transparent hover:text-blue-600 hover:underline"
-            onClick={() => window.open(template.demoUrl, '_blank')}
-          >
-            View Live Demo
-            <ExternalLink className="w-3 h-3 ml-1" />
-          </Button>
-          
+        <div className="mt-2 flex justify-end">
           {isSelected && (
             <div 
-              className="h-6 w-6 rounded-full bg-blue-500 flex items-center justify-center text-white"
+              className="h-6 w-6 rounded-full bg-primary flex items-center justify-center text-white"
               onClick={() => toggleTemplateSelection(template.id)}
             >
-              <Check className="w-4 h-4" />
+              <Check className="w-4 w-4" />
             </div>
           )}
         </div>

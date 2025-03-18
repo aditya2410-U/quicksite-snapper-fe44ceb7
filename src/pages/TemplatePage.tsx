@@ -1,12 +1,13 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBuilder } from "@/context/BuilderContext";
 import StepIndicator from "@/components/StepIndicator";
 import TemplateCard from "@/components/TemplateCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft, Loader2, Search } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const TemplatePage: React.FC = () => {
   const navigate = useNavigate();
@@ -15,10 +16,26 @@ const TemplatePage: React.FC = () => {
     selectedTemplates,
     generatedWebsites,
     matchedKeyword,
-    setCurrentStep
+    setCurrentStep,
+    isLoading,
+    setIsLoading
   } = useBuilder();
   
   const [searchTerm, setSearchTerm] = useState("");
+  const [displayTemplates, setDisplayTemplates] = useState(false);
+  
+  useEffect(() => {
+    // Simulate loading templates
+    if (!displayTemplates && generatedWebsites.length > 0) {
+      setIsLoading(true);
+      const timer = setTimeout(() => {
+        setDisplayTemplates(true);
+        setIsLoading(false);
+      }, 1500);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [generatedWebsites, displayTemplates]);
   
   const filteredTemplates = searchTerm.trim() 
     ? generatedWebsites.filter(template => 
@@ -37,7 +54,7 @@ const TemplatePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-secondary">
       <div className="sticky top-0 z-10">
         <StepIndicator />
       </div>
@@ -60,24 +77,44 @@ const TemplatePage: React.FC = () => {
                 placeholder={`${matchedKeyword || "pdhome"}, freyrs, tufanrugs`}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                disabled={isLoading}
               />
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {filteredTemplates.map((template) => (
-              <TemplateCard 
-                key={template.id}
-                template={template}
-              />
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {Array(6).fill(0).map((_, index) => (
+                <div key={index} className="border rounded-xl overflow-hidden">
+                  <Skeleton className="aspect-[4/3] w-full" />
+                  <div className="p-4">
+                    <Skeleton className="h-6 w-2/3 mb-2" />
+                    <Skeleton className="h-4 w-full" />
+                    <div className="flex justify-between mt-4">
+                      <Skeleton className="h-8 w-24" />
+                      <Skeleton className="h-8 w-24" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {filteredTemplates.map((template) => (
+                <TemplateCard 
+                  key={template.id}
+                  template={template}
+                />
+              ))}
+            </div>
+          )}
           
           <div className="flex justify-between">
             <Button 
               variant="outline"
               onClick={handleBack}
               className="flex items-center gap-1"
+              disabled={isLoading}
             >
               <ArrowLeft className="h-4 w-4" />
               Back
@@ -85,10 +122,19 @@ const TemplatePage: React.FC = () => {
             
             <Button 
               onClick={handleGenerate}
-              disabled={selectedTemplates.length === 0}
-              className="px-8"
+              disabled={selectedTemplates.length === 0 || isLoading}
+              className="px-8 bg-primary hover:bg-primary/90"
             >
-              Generate {selectedTemplates.length > 1 ? `(${selectedTemplates.length})` : ''}
+              {isLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Loading...
+                </>
+              ) : (
+                <>
+                  Generate {selectedTemplates.length > 1 ? `(${selectedTemplates.length})` : ''}
+                </>
+              )}
             </Button>
           </div>
         </div>

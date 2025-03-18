@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { BUSINESS_TYPES, BusinessType } from "@/context/BuilderContext";
 
 const WebsiteForm: React.FC = () => {
   const navigate = useNavigate();
@@ -16,6 +17,10 @@ const WebsiteForm: React.FC = () => {
     setBusinessType, 
     language, 
     setLanguage,
+    scrapeUrl,
+    setScrapeUrl,
+    referenceUrl,
+    setReferenceUrl,
     setCurrentStep
   } = useBuilder();
 
@@ -55,14 +60,19 @@ const WebsiteForm: React.FC = () => {
           <Label htmlFor="business-type" className="text-sm font-medium">
             This website is for: <span className="text-red-500">*</span>
           </Label>
-          <Input
-            id="business-type"
-            placeholder="Type to search your business"
+          <Select
             value={businessType}
-            onChange={(e) => setBusinessType(e.target.value)}
-            required
-            className="w-full"
-          />
+            onValueChange={(value) => setBusinessType(value as BusinessType)}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select business type" />
+            </SelectTrigger>
+            <SelectContent>
+              {BUSINESS_TYPES.map((type) => (
+                <SelectItem key={type} value={type}>{type}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
         
         <div className="space-y-2">
@@ -87,10 +97,38 @@ const WebsiteForm: React.FC = () => {
             </SelectContent>
           </Select>
         </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="scrape-url" className="text-sm font-medium">
+            Site to scrape data from:
+          </Label>
+          <Input
+            id="scrape-url"
+            placeholder="https://example.com"
+            value={scrapeUrl}
+            onChange={(e) => setScrapeUrl(e.target.value)}
+            className="w-full"
+          />
+          <p className="text-xs text-gray-500">Enter the URL of an existing website you'd like to extract content from</p>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="reference-url" className="text-sm font-medium">
+            Reference design:
+          </Label>
+          <Input
+            id="reference-url"
+            placeholder="pdhome.com, freyrs.com, etc."
+            value={referenceUrl}
+            onChange={(e) => setReferenceUrl(e.target.value)}
+            className="w-full"
+          />
+          <p className="text-xs text-gray-500">Enter a website that has a design style you like</p>
+        </div>
         
         <Button 
           type="submit" 
-          className="w-full"
+          className="w-full bg-primary hover:bg-primary/90"
           disabled={!websiteName || !businessType}
         >
           Next
