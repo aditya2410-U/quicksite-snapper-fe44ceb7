@@ -63,10 +63,10 @@ const DescribePage: React.FC = () => {
       }
       
       // 3. Fallback to business type if no templates found
-      if (templates.length === 0 && businessType) {
-        const businessTemplates = findTemplatesByBusinessType(businessType);
-        templates = [...templates, ...businessTemplates];
-      }
+      // if (templates.length === 0 && businessType) {
+      //   const businessTemplates = findTemplatesByBusinessType(businessType);
+      //   templates = [...templates, ...businessTemplates];
+      // }
       
       // Set the unique templates (avoiding duplicates)
       const uniqueTemplates = Array.from(new Set(templates.map(t => t.id)))
