@@ -8,7 +8,6 @@ import { BuilderProvider } from "./context/BuilderContext";
 
 import Index from "./pages/Index";
 import DescribePage from "./pages/DescribePage";
-import ScrapePage from "./pages/ScrapePage";
 import TemplatePage from "./pages/TemplatePage";
 import GeneratingPage from "./pages/GeneratingPage";
 import ResultPage from "./pages/ResultPage";
@@ -26,7 +25,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/describe" element={<DescribePage />} />
-            <Route path="/scrape" element={<ScrapePage />} />
             <Route path="/templates" element={<TemplatePage />} />
             <Route path="/generating" element={<GeneratingPage />} />
             <Route path="/result" element={<ResultPage />} />

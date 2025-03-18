@@ -14,10 +14,9 @@ interface Step {
 const steps: Step[] = [
   { name: "Let's Start", number: 1, path: "/" },
   { name: "Describe", number: 2, path: "/describe" },
-  { name: "Sources", number: 3, path: "/scrape" },
-  { name: "Templates", number: 4, path: "/templates" },
-  { name: "Generate", number: 5, path: "/generating" },
-  { name: "Result", number: 6, path: "/result" },
+  { name: "Templates", number: 3, path: "/templates" },
+  { name: "Generate", number: 4, path: "/generating" },
+  { name: "Result", number: 5, path: "/result" },
 ];
 
 const StepIndicator: React.FC = () => {

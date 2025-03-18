@@ -25,13 +25,13 @@ const TemplatePage: React.FC = () => {
   const [displayTemplates, setDisplayTemplates] = useState(false);
   
   useEffect(() => {
-    // Ensure loading state lasts at least 5 seconds
+    // Simulate loading templates
     if (!displayTemplates && generatedWebsites.length > 0) {
       setIsLoading(true);
       const timer = setTimeout(() => {
         setDisplayTemplates(true);
         setIsLoading(false);
-      }, 5000); // Set to 5 seconds minimum
+      }, 1500);
       
       return () => clearTimeout(timer);
     }
@@ -45,11 +45,11 @@ const TemplatePage: React.FC = () => {
     : generatedWebsites;
 
   const handleBack = () => {
-    navigate("/scrape");
+    navigate("/describe");
   };
 
   const handleGenerate = () => {
-    setCurrentStep(5);
+    setCurrentStep(4);
     navigate("/generating");
   };
 
