@@ -45,11 +45,11 @@ const TemplatePage: React.FC = () => {
     : generatedWebsites;
 
   const handleBack = () => {
-    navigate("/describe");
+    navigate("/scrape");
   };
 
   const handleGenerate = () => {
-    setCurrentStep(4);
+    setCurrentStep(5);
     navigate("/generating");
   };
 
