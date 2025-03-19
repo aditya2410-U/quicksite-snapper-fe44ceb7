@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# .env files (You may want to keep `.env` but add `.env.local` to ignore local env files)
+.env*
