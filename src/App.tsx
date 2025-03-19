@@ -28,7 +28,7 @@ const App = () => (
             <Route path="/describe" element={<DescribePage />} />
             <Route path="/scrape" element={<ScrapePage />} />
             <Route path="/templates" element={<TemplatePage />} />
-            <Route path="/generating" element={<GeneratingPage />} />
+            {/* <Route path="/generating" element={<GeneratingPage />} /> */}
             <Route path="/result" element={<ResultPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

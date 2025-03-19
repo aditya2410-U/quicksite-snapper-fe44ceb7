@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, ArrowRight, Sparkle } from "lucide-react";
 import chatgpt_api from "@/utils/api_request";
+import { set } from "date-fns";
 
 const DescribePage: React.FC = () => {
   const navigate = useNavigate();
@@ -39,49 +40,49 @@ const DescribePage: React.FC = () => {
   const handleNext = () => {
     setIsLoading(true);
 
-    // Simulate loading
-    setTimeout(() => {
-      // Detect keywords in the description
-      const keywords = detectKeywords(description);
-
-      // Find templates based on different sources of information
-      let templates = [];
-
-      // 1. Check if keywords were found in description
-      if (keywords.length > 0) {
-        for (const keyword of keywords) {
-          const keywordTemplates = findTemplatesByKeyword(keyword);
-          templates = [...templates, ...keywordTemplates];
-        }
-        localStorage.setItem("matchedKeyword", keywords[0]);
-        setMatchedKeyword(keywords[0]);
-      }
-
-      // 2. Check if a reference URL was provided
-      if (referenceUrl && templates.length === 0) {
-        const referenceTemplates = findTemplatesByReferenceUrl(referenceUrl);
-        if (referenceTemplates.length > 0) {
-          templates = [...templates, ...referenceTemplates];
-        }
-      }
-
-      // 3. Fallback to business type if no templates found
-      if (templates.length === 0 && businessType) {
-        const businessTemplates = findTemplatesByBusinessType(businessType);
-        templates = [...templates, ...businessTemplates];
-      }
-
-      // Set the unique templates (avoiding duplicates)
-      const uniqueTemplates = Array.from(new Set(templates.map(t => t.id)))
-        .map(id => templates.find(t => t.id === id))
-        .filter(Boolean) as typeof templates;
-
-      setGeneratedWebsites(uniqueTemplates);
-      localStorage.setItem("generatedWebsites", JSON.stringify(uniqueTemplates));
+    setTimeout(()=>{
       setCurrentStep(3);
       setIsLoading(false);
       navigate("/scrape");
-    }, 1500);
+    },1500);
+
+    // setTimeout(() => {
+    //   const keywords = detectKeywords(description);
+
+    //   let templates = [];
+
+    //   if (keywords.length > 0) {
+    //     for (const keyword of keywords) {
+    //       const keywordTemplates = findTemplatesByKeyword(keyword);
+    //       templates = [...templates, ...keywordTemplates];
+    //     }
+    //     localStorage.setItem("matchedKeyword", keywords[0]);
+    //     setMatchedKeyword(keywords[0]);
+    //     console.log(keywords[0]);
+    //   }
+
+    //   if (referenceUrl && templates.length === 0) {
+    //     const referenceTemplates = findTemplatesByReferenceUrl(referenceUrl);
+    //     if (referenceTemplates.length > 0) {
+    //       templates = [...templates, ...referenceTemplates];
+    //     }
+    //   }
+
+    //   if (templates.length === 0 && businessType) {
+    //     const businessTemplates = findTemplatesByBusinessType(businessType);
+    //     templates = [...templates, ...businessTemplates];
+    //   }
+
+    //   const uniqueTemplates = Array.from(new Set(templates.map(t => t.id)))
+    //     .map(id => templates.find(t => t.id === id))
+    //     .filter(Boolean) as typeof templates;
+
+    //   setGeneratedWebsites(uniqueTemplates);
+    //   localStorage.setItem("generatedWebsites", JSON.stringify(uniqueTemplates));
+    //   setCurrentStep(3);
+    //   setIsLoading(false);
+    //   navigate("/scrape");
+    // }, 1500);
   };
 
   const handleBack = () => {

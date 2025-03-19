@@ -34,10 +34,10 @@ const GeneratingPage: React.FC = () => {
   }, [navigate, setCurrentStep]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <div className="sticky top-0 z-10">
+    <div className="min-h-[90vh] flex flex-col bg-gray-50">
+      {/* <div className="sticky top-0 z-10">
         <StepIndicator />
-      </div>
+      </div> */}
       
       <div className="flex-grow flex flex-col items-center justify-center p-6">
         <div className="max-w-md w-full text-center">

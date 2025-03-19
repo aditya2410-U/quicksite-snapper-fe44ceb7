@@ -25,16 +25,34 @@ const StepIndicator: React.FC = () => {
   const { currentStep, setCurrentStep, setWebsiteName, setBusinessType, setLanguage, setDescription, setSelectedTemplates, setMatchedKeyword, setGeneratedWebsites, setScrapeUrl, setReferenceUrl, } = useBuilder();
   useEffect(() => {
     const currentPath = location.pathname;
-    console.log(currentPath);
     const currentStep = steps.find((step) => step.path === currentPath);
     currentStep && setCurrentStep(currentStep ? currentStep.number : 1);
+    let count = 0;
+    if(localStorage.getItem("websiteName") || localStorage.getItem("businessType") || localStorage.getItem("language")) {
+      count++;
+    }
+    if(localStorage.getItem("description")) {
+      count++;
+    }
+    if(localStorage.getItem("scrapeUrl") || localStorage.getItem("referenceUrl")){
+      count++;
+    }
+    if(localStorage.getItem("selectedTemplates")){
+      count++;
+    }
+    if(localStorage.getItem("generatedWebsites")){
+      count++;
+    }
+    if(count + 1 < currentStep?.number) {
+      navigate(steps[count].path);
+      setCurrentStep(count);
+    }
     setWebsiteName(localStorage.getItem("websiteName") || "");
     setBusinessType(localStorage.getItem("businessType") as BusinessType || "");
     setLanguage(localStorage.getItem("language") || "");
     setDescription(localStorage.getItem("description") || "");
     setScrapeUrl(localStorage.getItem("scrapeUrl") || "");
     setReferenceUrl(localStorage.getItem("referenceUrl") || "");
-    setSelectedTemplates(JSON.parse(localStorage.getItem("selectedTemplates") || "[]"));
     setMatchedKeyword(localStorage.getItem("matchedKeyword") || "");
     setGeneratedWebsites(JSON.parse(localStorage.getItem("generatedWebsites") || "[]"));
   }, []);
