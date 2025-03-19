@@ -22,28 +22,26 @@ const steps: Step[] = [
 const StepIndicator: React.FC = () => {
   const navigate = useNavigate();
   const loacation = useLocation();
-  const { currentStep, setCurrentStep, setWebsiteName, setBusinessType, setLanguage, setDescription, setSelectedTemplates, setMatchedKeyword, setGeneratedWebsites, setScrapeUrl, setReferenceUrl, } = useBuilder();
+  const { currentStep, setCurrentStep, setWebsiteName, setBusinessType, setLanguage, setDescription, setMatchedKeyword, setGeneratedWebsites, setScrapeUrl, setReferenceUrl,setSelectedTemplates } = useBuilder();
   useEffect(() => {
     const currentPath = location.pathname;
     const currentStep = steps.find((step) => step.path === currentPath);
     currentStep && setCurrentStep(currentStep ? currentStep.number : 1);
+    if(currentStep?.number < 4) {
+      setSelectedTemplates([]);
+    }
     let count = 0;
-    if(localStorage.getItem("websiteName") || localStorage.getItem("businessType") || localStorage.getItem("language")) {
-      count++;
-    }
-    if(localStorage.getItem("description")) {
-      count++;
-    }
-    if(localStorage.getItem("scrapeUrl") || localStorage.getItem("referenceUrl")){
-      count++;
-    }
-    if(localStorage.getItem("selectedTemplates")){
-      count++;
-    }
-    if(localStorage.getItem("generatedWebsites")){
-      count++;
-    }
-    if(count + 1 < currentStep?.number) {
+    if (localStorage.getItem("websiteName") || localStorage.getItem("businessType") || localStorage.getItem("language")) count++;
+
+    if (localStorage.getItem("description")) count++;
+
+    if (localStorage.getItem("scrapeUrl") || localStorage.getItem("referenceUrl")) count++;
+
+    if (localStorage.getItem("selectedTemplates")) count++;
+
+    if (localStorage.getItem("generatedWebsites")) count++;
+
+    if (count + 1 < currentStep?.number) {
       navigate(steps[count].path);
       setCurrentStep(count);
     }
@@ -58,8 +56,8 @@ const StepIndicator: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log('current step changed to: ',currentStep);
-  },[currentStep]);
+    console.log('current step changed to: ', currentStep);
+  }, [currentStep]);
 
   const handleStepClick = (step: Step) => {
     // Only allow navigation to steps that have been completed or are next
