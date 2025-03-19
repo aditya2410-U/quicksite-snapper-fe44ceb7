@@ -3,7 +3,7 @@
 export interface Template {
   id: string;
   name: string;
-  keyword: string;
+  keywords: string[];  // Changed from singular keyword to keywords array
   description: string;
   previewImage: string;
   demoUrl: string;
@@ -20,12 +20,13 @@ export const BUSINESS_TYPE_KEYWORDS = {
   "Lighting": ["antique curiosties"]
 };
 
-export const REFERENCE_URLS = {
-  "pdhome.com": "pdhome",
-  "freyrs.com": "freyrs",
-  "tufanrugs.com": "tufanrugs",
-  "antiquecuriosities.com": "antique curiosties",
-  "mycasualspace.com": "mycasualspace"
+// Define recognizable URL patterns for each keyword
+export const REFERENCE_URLS: Record<string, string[]> = {
+  "pdhome": ["pdhome", "pd-home", "pdhome.com", "pdhome.wizcommerce"],
+  "freyrs": ["freyrs", "freyrs.com", "freyr.com"],
+  "tufanrugs": ["tufanrugs", "tufan-rugs", "tufanrug", "tufanrugs.com"],
+  "antique curiosties": ["antiquecuriosities", "antique-curiosities", "antiquecuriosities.com"],
+  "mycasualspace": ["mycasualspace", "my-casual-space", "mycasualspace.com"]
 };
 
 export const TEMPLATES: Template[] = [
@@ -33,7 +34,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "pdhome-1",
     name: "PDHome Classic",
-    keyword: "pdhome",
+    keywords: ["pdhome", "pd-home"],
     description: "A sleek, professional home decor website with elegant styling and intuitive navigation.",
     previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
     demoUrl: "https://pdhome1.example.com",
@@ -42,7 +43,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "pdhome-2",
     name: "PDHome Modern",
-    keyword: "pdhome",
+    keywords: ["pdhome", "pd-home"],
     description: "A bright, contemporary home furnishings site with a focus on showcasing products beautifully.",
     previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
     demoUrl: "https://pdhome2.example.com",
@@ -51,7 +52,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "pdhome-3",
     name: "PDHome Premium",
-    keyword: "pdhome",
+    keywords: ["pdhome", "pd-home"],
     description: "A luxury premium template for established home decor businesses with advanced features.",
     previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
     demoUrl: "https://pdhome3.example.com",
@@ -63,7 +64,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "freyrs-1",
     name: "Freyrs Classic",
-    keyword: "freyrs",
+    keywords: ["freyrs", "freyr"],
     description: "A stylish eyewear e-commerce site with elegant design and smooth shopping experience.",
     previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
     demoUrl: "https://freyrs1.example.com",
@@ -72,7 +73,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "freyrs-2",
     name: "Freyrs Modern",
-    keyword: "freyrs",
+    keywords: ["freyrs", "freyr"],
     description: "A contemporary eyewear website with cutting-edge design and seamless mobile experience.",
     previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
     demoUrl: "https://freyrs2.example.com",
@@ -81,7 +82,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "freyrs-3",
     name: "Freyrs Premium",
-    keyword: "freyrs",
+    keywords: ["freyrs", "freyr"],
     description: "A premium eyewear site template with advanced filtering and product showcase features.",
     previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
     demoUrl: "https://freyrs3.example.com",
@@ -93,7 +94,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "antique-1",
     name: "Antique Curiosities Classic",
-    keyword: "antique curiosties",
+    keywords: ["antique curiosties", "antiquecuriosities"],
     description: "A vintage-styled e-commerce site perfect for antique stores and collectors.",
     previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
     demoUrl: "https://antiquecuriosities1.example.com",
@@ -102,7 +103,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "antique-2",
     name: "Antique Curiosities Modern",
-    keyword: "antique curiosties",
+    keywords: ["antique curiosties", "antiquecuriosities"],
     description: "A contemporary template for antique businesses with a clean, professional appearance.",
     previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
     demoUrl: "https://antiquecuriosities2.example.com",
@@ -111,7 +112,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "antique-3",
     name: "Antique Curiosities Premium",
-    keyword: "antique curiosties",
+    keywords: ["antique curiosties", "antiquecuriosities"],
     description: "A luxury template for high-end antique dealers with advanced catalog features.",
     previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
     demoUrl: "https://antiquecuriosities3.example.com",
@@ -123,7 +124,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "tufanrugs-1",
     name: "Tufan Rugs Classic",
-    keyword: "tufanrugs",
+    keywords: ["tufanrugs", "tufan-rugs", "tufanrug"],
     description: "An elegant template for rug retailers with beautiful product showcasing.",
     previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
     demoUrl: "https://tufanrugs1.example.com",
@@ -132,7 +133,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "tufanrugs-2",
     name: "Tufan Rugs Modern",
-    keyword: "tufanrugs",
+    keywords: ["tufanrugs", "tufan-rugs", "tufanrug"],
     description: "A modern, responsive design for rug e-commerce with advanced filtering.",
     previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
     demoUrl: "https://tufanrugs2.example.com",
@@ -141,7 +142,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "tufanrugs-3",
     name: "Tufan Rugs Premium",
-    keyword: "tufanrugs",
+    keywords: ["tufanrugs", "tufan-rugs", "tufanrug"],
     description: "A premium template for high-end rug retailers with 3D viewing capabilities.",
     previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
     demoUrl: "https://tufanrugs3.example.com",
@@ -153,7 +154,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "mycasualspace-1",
     name: "My Casual Space Classic",
-    keyword: "mycasualspace",
+    keywords: ["mycasualspace", "my-casual-space"],
     description: "A clean, minimalist furniture site template with intuitive navigation.",
     previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
     demoUrl: "https://mycasualspace1.example.com",
@@ -162,7 +163,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "mycasualspace-2",
     name: "My Casual Space Modern",
-    keyword: "mycasualspace",
+    keywords: ["mycasualspace", "my-casual-space"],
     description: "A contemporary furniture and lifestyle site with advanced product showcasing.",
     previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
     demoUrl: "https://mycasualspace2.example.com",
@@ -171,7 +172,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "mycasualspace-3",
     name: "My Casual Space Premium",
-    keyword: "mycasualspace",
+    keywords: ["mycasualspace", "my-casual-space"],
     description: "A premium home decor and furniture template with interior design visualization tools.",
     previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
     demoUrl: "https://mycasualspace3.example.com",
@@ -183,20 +184,33 @@ export const TEMPLATES: Template[] = [
 // Function to find templates by keyword
 export function findTemplatesByKeyword(keyword: string): Template[] {
   return TEMPLATES.filter(template => 
-    template.keyword.toLowerCase() === keyword.toLowerCase()
+    template.keywords.some(k => k.toLowerCase() === keyword.toLowerCase())
   );
 }
 
-// Function to find templates by reference URL
+// Improved function to find templates by reference URL
 export function findTemplatesByReferenceUrl(referenceUrl: string): Template[] {
-  const domain = referenceUrl.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
-  const keyword = REFERENCE_URLS[domain as keyof typeof REFERENCE_URLS];
+  // First clean the URL
+  const cleanUrl = referenceUrl.toLowerCase()
+    .replace(/^https?:\/\//, '')
+    .replace(/\/.*$/, '');
+
+  // Try to find matching keywords in the URL
+  const matchedTemplates: Template[] = [];
   
-  if (keyword) {
-    return findTemplatesByKeyword(keyword);
+  // Check each keyword group for matches in the URL
+  for (const [keywordGroup, urlPatterns] of Object.entries(REFERENCE_URLS)) {
+    for (const pattern of urlPatterns) {
+      if (cleanUrl.includes(pattern.toLowerCase())) {
+        // Found a match, add templates with this keyword
+        const templates = findTemplatesByKeyword(keywordGroup);
+        matchedTemplates.push(...templates);
+        break; // Exit the pattern loop once we find a match
+      }
+    }
   }
   
-  return [];
+  return matchedTemplates;
 }
 
 // Function to find templates by business type
@@ -204,9 +218,17 @@ export function findTemplatesByBusinessType(businessType: string): Template[] {
   const keywords = BUSINESS_TYPE_KEYWORDS[businessType as keyof typeof BUSINESS_TYPE_KEYWORDS] || [];
   
   if (keywords.length > 0) {
-    return TEMPLATES.filter(template => 
-      keywords.includes(template.keyword.toLowerCase())
-    );
+    const templates: Template[] = [];
+    
+    for (const keyword of keywords) {
+      const keywordTemplates = findTemplatesByKeyword(keyword);
+      templates.push(...keywordTemplates);
+    }
+    
+    // Remove duplicates
+    return Array.from(new Set(templates.map(t => t.id)))
+      .map(id => templates.find(t => t.id === id))
+      .filter(Boolean) as Template[];
   }
   
   return [];

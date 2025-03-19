@@ -8,7 +8,7 @@ export const BUSINESS_TYPES: BusinessType[] = ["HomeDecor", "Wearables", "Lighti
 interface Template {
   id: string;
   name: string;
-  keyword: string;
+  keywords: string[];
   description: string;
   previewImage: string;
   demoUrl: string;
