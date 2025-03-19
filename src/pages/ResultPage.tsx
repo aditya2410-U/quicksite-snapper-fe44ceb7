@@ -1,16 +1,13 @@
+
 import React from "react";
 import { useBuilder } from "@/context/BuilderContext";
 import { findTemplateById } from "@/data/templates";
 import StepIndicator from "@/components/StepIndicator";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ExternalLink, Download, Share2, Home } from "lucide-react";
+import { CheckCircle, ExternalLink, Download, Share2 } from "lucide-react";
 import { toast } from "sonner";
 
-interface ResultPageProps {
-  onReset: () => void;
-}
-
-const ResultPage: React.FC<ResultPageProps> = ({ onReset }) => {
+const ResultPage: React.FC = () => {
   const { selectedTemplates, websiteName } = useBuilder();
   
   // Get template information for selected templates
@@ -128,16 +125,6 @@ const ResultPage: React.FC<ResultPageProps> = ({ onReset }) => {
             ))}
           </div>
         </div>
-      </div>
-      
-      <div className="mt-8 text-center">
-        <Button 
-          onClick={onReset}
-          className="bg-primary hover:bg-primary/90"
-        >
-          <Home className="mr-2 h-4 w-4" />
-          Create Another Website
-        </Button>
       </div>
     </div>
   );

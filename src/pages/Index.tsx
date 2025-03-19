@@ -3,11 +3,7 @@ import React from "react";
 import StepIndicator from "@/components/StepIndicator";
 import WebsiteForm from "@/components/WebsiteForm";
 
-interface IndexProps {
-  onNext: () => void;
-}
-
-const Index: React.FC<IndexProps> = ({ onNext }) => {
+const Index: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-secondary">
       <div className="sticky top-0 z-10">
@@ -23,7 +19,7 @@ const Index: React.FC<IndexProps> = ({ onNext }) => {
               Tufan Rugs, and more in minutes!
             </p>
           </div>
-          <WebsiteForm onNext={onNext} />
+          <WebsiteForm />
         </div>
       </div>
     </div>

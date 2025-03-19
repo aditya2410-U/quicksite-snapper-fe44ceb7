@@ -1,5 +1,6 @@
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { useBuilder } from "@/context/BuilderContext";
@@ -7,26 +8,39 @@ import { useBuilder } from "@/context/BuilderContext";
 interface Step {
   name: string;
   number: number;
+  path: string;
 }
 
 const steps: Step[] = [
-  { name: "Let's Start", number: 1 },
-  { name: "Describe", number: 2 },
-  { name: "Sources", number: 3 },
-  { name: "Templates", number: 4 },
-  { name: "Generate", number: 5 },
-  { name: "Result", number: 6 },
+  { name: "Let's Start", number: 1, path: "/" },
+  { name: "Describe", number: 2, path: "/describe" },
+  { name: "Sources", number: 3, path: "/scrape" },
+  { name: "Templates", number: 4, path: "/templates" },
+  { name: "Generate", number: 5, path: "/generating" },
+  { name: "Result", number: 6, path: "/result" },
 ];
 
 const StepIndicator: React.FC = () => {
+  const navigate = useNavigate();
   const { currentStep, setCurrentStep } = useBuilder();
+
+  const handleStepClick = (step: Step) => {
+    // Only allow navigation to steps that have been completed or are next
+    if (step.number <= currentStep) {
+      setCurrentStep(step.number);
+      navigate(step.path);
+    }
+  };
 
   return (
     <div className="py-4 px-6 bg-white flex items-center justify-center w-full border-b border-gray-100">
       <div className="flex items-center space-x-2 md:space-x-4 max-w-3xl w-full">
         {steps.map((step, index) => (
           <React.Fragment key={step.number}>
-            <div className="flex flex-col items-center">
+            <div 
+              className="flex flex-col items-center cursor-pointer"
+              onClick={() => handleStepClick(step)}
+            >
               <div 
                 className={cn(
                   "w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300",

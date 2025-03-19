@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useBuilder } from "@/context/BuilderContext";
 import StepIndicator from "@/components/StepIndicator";
 import { Button } from "@/components/ui/button";
@@ -6,12 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 
-interface ScrapePageProps {
-  onBack: () => void;
-  onNext: () => void;
-}
-
-const ScrapePage: React.FC<ScrapePageProps> = ({ onBack, onNext }) => {
+const ScrapePage: React.FC = () => {
+  const navigate = useNavigate();
   const { 
     websiteName,
     scrapeUrl,
@@ -26,6 +23,10 @@ const ScrapePage: React.FC<ScrapePageProps> = ({ onBack, onNext }) => {
   
   const [isGenerating, setIsGenerating] = useState(false);
 
+  const handleBack = () => {
+    navigate("/describe");
+  };
+
   const handleGenerateTemplates = () => {
     setIsGenerating(true);
     
@@ -33,8 +34,8 @@ const ScrapePage: React.FC<ScrapePageProps> = ({ onBack, onNext }) => {
     setTimeout(() => {
       setCurrentStep(4);
       setIsLoading(true); // This will trigger the loading state in the templates page
-      onNext();
-    }, 5000); // 5 seconds delay
+      navigate("/templates");
+    }, 5000); // Random time between 5-8 seconds
   };
 
   return (
@@ -90,7 +91,7 @@ const ScrapePage: React.FC<ScrapePageProps> = ({ onBack, onNext }) => {
           <div className="mt-8 flex justify-between">
             <Button 
               variant="outline"
-              onClick={onBack}
+              onClick={handleBack}
               className="flex items-center gap-1"
               disabled={isGenerating}
             >

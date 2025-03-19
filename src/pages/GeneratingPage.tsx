@@ -1,20 +1,19 @@
+
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useBuilder } from "@/context/BuilderContext";
 import StepIndicator from "@/components/StepIndicator";
 import { Progress } from "@/components/ui/progress";
 
-interface GeneratingPageProps {
-  onComplete: () => void;
-}
-
-const GeneratingPage: React.FC<GeneratingPageProps> = ({ onComplete }) => {
+const GeneratingPage: React.FC = () => {
+  const navigate = useNavigate();
   const { setCurrentStep } = useBuilder();
   const [progress, setProgress] = React.useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentStep(6);
-      onComplete();
+      navigate("/result");
     }, 5000); // Navigate after 5 seconds of "generating"
 
     // Simulate progress
@@ -32,7 +31,7 @@ const GeneratingPage: React.FC<GeneratingPageProps> = ({ onComplete }) => {
       clearTimeout(timer);
       clearInterval(interval);
     };
-  }, [onComplete, setCurrentStep]);
+  }, [navigate, setCurrentStep]);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
