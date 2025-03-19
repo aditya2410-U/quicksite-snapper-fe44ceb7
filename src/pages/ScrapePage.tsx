@@ -49,14 +49,14 @@ const ScrapePage: React.FC = () => {
         console.log(keywords[0]);
       }
 
-      if (referenceUrl && templates.length === 0) {
+      if (referenceUrl) {
         const referenceTemplates = findTemplatesByReferenceUrl(referenceUrl);
         if (referenceTemplates.length > 0) {
           templates = [...templates, ...referenceTemplates];
         }
       }
 
-      if (templates.length === 0 && businessType) {
+      if (businessType) {
         const businessTemplates = findTemplatesByBusinessType(businessType);
         templates = [...templates, ...businessTemplates];
       }
