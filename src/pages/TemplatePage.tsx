@@ -42,8 +42,7 @@ const TemplatePage: React.FC = () => {
 
   const filteredTemplates = searchTerm.trim()
     ? generatedWebsites.filter(template =>
-      template.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      template.keyword.toLowerCase().includes(searchTerm.toLowerCase())
+      template.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     : generatedWebsites;
 
