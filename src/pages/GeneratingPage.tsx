@@ -12,7 +12,7 @@ const GeneratingPage: React.FC = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentStep(6);
+      setCurrentStep(5);
       navigate("/result");
     }, 5000); // Navigate after 5 seconds of "generating"
 

@@ -26,7 +26,7 @@ const TemplatePage: React.FC = () => {
   
   useEffect(() => {
     // Simulate loading templates
-    if (!displayTemplates) {
+    if (!displayTemplates && generatedWebsites.length > 0) {
       setIsLoading(true);
       const timer = setTimeout(() => {
         setDisplayTemplates(true);
@@ -43,14 +43,13 @@ const TemplatePage: React.FC = () => {
         template.keyword.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : generatedWebsites;
-  console.log(filteredTemplates);
 
   const handleBack = () => {
-    navigate("/scrape");
+    navigate("/describe");
   };
 
   const handleGenerate = () => {
-    setCurrentStep(5);
+    setCurrentStep(4);
     navigate("/generating");
   };
 
