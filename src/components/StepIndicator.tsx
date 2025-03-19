@@ -1,9 +1,9 @@
 
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
-import { useBuilder } from "@/context/BuilderContext";
+import { BusinessType, useBuilder } from "@/context/BuilderContext";
 
 interface Step {
   name: string;
@@ -22,7 +22,23 @@ const steps: Step[] = [
 
 const StepIndicator: React.FC = () => {
   const navigate = useNavigate();
-  const { currentStep, setCurrentStep } = useBuilder();
+  const loacation = useLocation();
+  const { currentStep, setCurrentStep, setWebsiteName, setBusinessType, setLanguage, setDescription, setSelectedTemplates, setMatchedKeyword, setGeneratedWebsites, setScrapeUrl, setReferenceUrl, } = useBuilder();
+  useEffect(() => {
+    const currentPath = location.pathname;
+    console.log(currentPath);
+    const currentStep = steps.find((step) => step.path === currentPath);
+    setCurrentStep(currentStep ? currentStep.number : 1);
+    setWebsiteName(localStorage.getItem("websiteName") || "");
+    setBusinessType(localStorage.getItem("businessType") as BusinessType || "");
+    setLanguage(localStorage.getItem("language") || "");
+    setDescription(localStorage.getItem("description") || "");
+    setSelectedTemplates(JSON.parse(localStorage.getItem("selectedTemplates") || "[]"));
+    setMatchedKeyword(localStorage.getItem("matchedKeyword") || "");
+    setGeneratedWebsites(JSON.parse(localStorage.getItem("generatedWebsites") || "[]"));
+    setScrapeUrl(localStorage.getItem("scrapeUrl") || "");
+    setReferenceUrl(localStorage.getItem("referenceUrl") || "");
+  }, []);
 
   const handleStepClick = (step: Step) => {
     // Only allow navigation to steps that have been completed or are next
@@ -37,16 +53,16 @@ const StepIndicator: React.FC = () => {
       <div className="flex items-center space-x-2 md:space-x-4 max-w-3xl w-full">
         {steps.map((step, index) => (
           <React.Fragment key={step.number}>
-            <div 
+            <div
               className="flex flex-col items-center cursor-pointer"
               onClick={() => handleStepClick(step)}
             >
-              <div 
+              <div
                 className={cn(
                   "w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300",
-                  currentStep > step.number 
-                    ? "bg-primary text-white" 
-                    : currentStep === step.number 
+                  currentStep > step.number
+                    ? "bg-primary text-white"
+                    : currentStep === step.number
                       ? "bg-primary text-white"
                       : "bg-gray-200 text-gray-500"
                 )}
@@ -57,7 +73,7 @@ const StepIndicator: React.FC = () => {
                   <span className="text-sm font-medium">{step.number}</span>
                 )}
               </div>
-              <span 
+              <span
                 className={cn(
                   "text-xs mt-1 hidden md:block transition-colors duration-300",
                   currentStep >= step.number ? "text-primary font-medium" : "text-gray-500"
@@ -67,7 +83,7 @@ const StepIndicator: React.FC = () => {
               </span>
             </div>
             {index < steps.length - 1 && (
-              <div 
+              <div
                 className={cn(
                   "h-[1px] flex-1 transition-colors duration-300",
                   currentStep > index + 1 ? "bg-primary" : "bg-gray-200"

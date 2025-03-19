@@ -63,7 +63,10 @@ const ScrapePage: React.FC = () => {
                 id="scrape-url"
                 placeholder="https://example.com"
                 value={scrapeUrl}
-                onChange={(e) => setScrapeUrl(e.target.value)}
+                onChange={(e) => {
+                  localStorage.setItem('scrapeUrl', e.target.value);
+                  setScrapeUrl(e.target.value);
+                }}
                 className="w-full"
               />
               <p className="text-xs text-gray-500">
@@ -79,7 +82,10 @@ const ScrapePage: React.FC = () => {
                 id="reference-url"
                 placeholder="pdhome.com, freyrs.com, etc."
                 value={referenceUrl}
-                onChange={(e) => setReferenceUrl(e.target.value)}
+                onChange={(e) => {
+                  localStorage.setItem('referenceUrl', e.target.value);
+                  setReferenceUrl(e.target.value)
+                }}
                 className="w-full"
               />
               <p className="text-xs text-gray-500">
