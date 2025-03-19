@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBuilder } from "@/context/BuilderContext";
 import StepIndicator from "@/components/StepIndicator";
@@ -32,7 +32,6 @@ const ScrapePage: React.FC = () => {
 
   const handleGenerateTemplates = () => {
     setIsGenerating(true);
-
     setIsLoading(true);
 
     setTimeout(() => {
@@ -72,8 +71,11 @@ const ScrapePage: React.FC = () => {
       setIsLoading(false);
       navigate("/templates");
     }, 1500);
-
   };
+
+  // Validation checks for the "scrapeUrl" and "referenceUrl" fields
+  const isScrapeUrlValid = scrapeUrl.trim() !== "";
+  const isReferenceUrlValid = referenceUrl.trim() !== "";
 
   return (
     <div className="min-h-screen flex flex-col bg-secondary">
@@ -114,6 +116,7 @@ const ScrapePage: React.FC = () => {
             <div className="space-y-2">
               <Label htmlFor="reference-url" className="text-sm font-medium">
                 Reference design:
+                <span className="text-red-500">*</span> {/* Visual cue for mandatory field */}
               </Label>
               <Input
                 id="reference-url"
@@ -144,7 +147,7 @@ const ScrapePage: React.FC = () => {
 
             <Button
               onClick={handleGenerateTemplates}
-              disabled={isGenerating}
+              disabled={isGenerating || !isReferenceUrlValid} // Disable if any field is empty
               className="flex items-center gap-1 bg-primary hover:bg-primary/90"
             >
               {isGenerating ? (
