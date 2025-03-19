@@ -16,8 +16,7 @@ const steps: Step[] = [
   { name: "Describe", number: 2, path: "/describe" },
   { name: "Sources", number: 3, path: "/scrape" },
   { name: "Templates", number: 4, path: "/templates" },
-  { name: "Generate", number: 5, path: "/generating" },
-  { name: "Result", number: 6, path: "/result" },
+  { name: "Result", number: 5, path: "/result" },
 ];
 
 const StepIndicator: React.FC = () => {
@@ -28,17 +27,21 @@ const StepIndicator: React.FC = () => {
     const currentPath = location.pathname;
     console.log(currentPath);
     const currentStep = steps.find((step) => step.path === currentPath);
-    setCurrentStep(currentStep ? currentStep.number : 1);
+    currentStep && setCurrentStep(currentStep ? currentStep.number : 1);
     setWebsiteName(localStorage.getItem("websiteName") || "");
     setBusinessType(localStorage.getItem("businessType") as BusinessType || "");
     setLanguage(localStorage.getItem("language") || "");
     setDescription(localStorage.getItem("description") || "");
+    setScrapeUrl(localStorage.getItem("scrapeUrl") || "");
+    setReferenceUrl(localStorage.getItem("referenceUrl") || "");
     setSelectedTemplates(JSON.parse(localStorage.getItem("selectedTemplates") || "[]"));
     setMatchedKeyword(localStorage.getItem("matchedKeyword") || "");
     setGeneratedWebsites(JSON.parse(localStorage.getItem("generatedWebsites") || "[]"));
-    setScrapeUrl(localStorage.getItem("scrapeUrl") || "");
-    setReferenceUrl(localStorage.getItem("referenceUrl") || "");
   }, []);
+
+  useEffect(() => {
+    console.log('current step changed to: ',currentStep);
+  },[currentStep]);
 
   const handleStepClick = (step: Step) => {
     // Only allow navigation to steps that have been completed or are next

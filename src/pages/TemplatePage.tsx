@@ -17,6 +17,7 @@ const TemplatePage: React.FC = () => {
     generatedWebsites,
     matchedKeyword,
     setCurrentStep,
+    currentStep,
     isLoading,
     setIsLoading
   } = useBuilder();
