@@ -36,8 +36,8 @@ export const TEMPLATES: Template[] = [
     name: "PDHome Classic",
     keywords: ["pdhome", "pd-home"],
     description: "A sleek, professional home decor website with elegant styling and intuitive navigation.",
-    previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
-    demoUrl: "https://pdhome1.example.com",
+    previewImage: "/lovable-uploads/pdhomeclassic.png",
+    demoUrl: "http://pdhomeclassic.wizcommerce.com/",
     referenceUrl: "pdhome.com"
   },
   {
