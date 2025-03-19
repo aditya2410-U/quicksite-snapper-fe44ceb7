@@ -1,6 +1,4 @@
-
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useBuilder } from "@/context/BuilderContext";
 import StepIndicator from "@/components/StepIndicator";
 import TemplateCard from "@/components/TemplateCard";
@@ -9,8 +7,12 @@ import { Input } from "@/components/ui/input";
 import { ArrowLeft, Loader2, Search } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const TemplatePage: React.FC = () => {
-  const navigate = useNavigate();
+interface TemplatePageProps {
+  onBack: () => void;
+  onNext: () => void;
+}
+
+const TemplatePage: React.FC<TemplatePageProps> = ({ onBack, onNext }) => {
   const { 
     websiteName,
     selectedTemplates,
@@ -43,15 +45,10 @@ const TemplatePage: React.FC = () => {
         template.keyword.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : generatedWebsites;
-  console.log(filteredTemplates);
-
-  const handleBack = () => {
-    navigate("/scrape");
-  };
 
   const handleGenerate = () => {
     setCurrentStep(5);
-    navigate("/generating");
+    onNext();
   };
 
   return (
@@ -113,7 +110,7 @@ const TemplatePage: React.FC = () => {
           <div className="flex justify-between">
             <Button 
               variant="outline"
-              onClick={handleBack}
+              onClick={onBack}
               className="flex items-center gap-1"
               disabled={isLoading}
             >

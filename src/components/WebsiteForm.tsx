@@ -1,6 +1,4 @@
-
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useBuilder } from "@/context/BuilderContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,8 +10,11 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const WebsiteForm: React.FC = () => {
-  const navigate = useNavigate();
+interface WebsiteFormProps {
+  onNext: () => void;
+}
+
+const WebsiteForm: React.FC<WebsiteFormProps> = ({ onNext }) => {
   const { 
     websiteName, 
     setWebsiteName, 
@@ -21,10 +22,6 @@ const WebsiteForm: React.FC = () => {
     setBusinessType, 
     language, 
     setLanguage,
-    scrapeUrl,
-    setScrapeUrl,
-    referenceUrl,
-    setReferenceUrl,
     setCurrentStep
   } = useBuilder();
 
@@ -37,7 +34,7 @@ const WebsiteForm: React.FC = () => {
     }
     
     setCurrentStep(2);
-    navigate("/describe");
+    onNext();
   };
 
   return (
@@ -132,34 +129,6 @@ const WebsiteForm: React.FC = () => {
           </Select>
         </div>
 
-        {/* <div className="space-y-2">
-          <Label htmlFor="scrape-url" className="text-sm font-medium">
-            Site to scrape data from:
-          </Label>
-          <Input
-            id="scrape-url"
-            placeholder="https://example.com"
-            value={scrapeUrl}
-            onChange={(e) => setScrapeUrl(e.target.value)}
-            className="w-full"
-          />
-          <p className="text-xs text-gray-500">Enter the URL of an existing website you'd like to extract content from</p>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="reference-url" className="text-sm font-medium">
-            Reference design:
-          </Label>
-          <Input
-            id="reference-url"
-            placeholder="pdhome.com, freyrs.com, etc."
-            value={referenceUrl}
-            onChange={(e) => setReferenceUrl(e.target.value)}
-            className="w-full"
-          />
-          <p className="text-xs text-gray-500">Enter a website that has a design style you like</p>
-        </div> */}
-        
         <Button 
           type="submit" 
           className="w-full bg-primary hover:bg-primary/90"

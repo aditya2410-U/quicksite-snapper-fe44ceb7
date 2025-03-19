@@ -1,6 +1,4 @@
-
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useBuilder } from "@/context/BuilderContext";
 import { detectKeywords, findTemplatesByKeyword, findTemplatesByReferenceUrl, findTemplatesByBusinessType } from "@/data/templates";
 import StepIndicator from "@/components/StepIndicator";
@@ -9,8 +7,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, ArrowRight, Sparkle } from "lucide-react";
 import chatgpt_api from "@/utils/api_request";
 
-const DescribePage: React.FC = () => {
-  const navigate = useNavigate();
+interface DescribePageProps {
+  onBack: () => void;
+  onNext: () => void;
+}
+
+const DescribePage: React.FC<DescribePageProps> = ({ onBack, onNext }) => {
   const {
     websiteName,
     description,
@@ -62,12 +64,6 @@ const DescribePage: React.FC = () => {
           templates = [...templates, ...referenceTemplates];
         }
       }
-
-      // 3. Fallback to business type if no templates found
-      // if (templates.length === 0 && businessType) {
-      //   const businessTemplates = findTemplatesByBusinessType(businessType);
-      //   templates = [...templates, ...businessTemplates];
-      // }
       
       // Set the unique templates (avoiding duplicates)
       const uniqueTemplates = Array.from(new Set(templates.map(t => t.id)))
@@ -77,12 +73,8 @@ const DescribePage: React.FC = () => {
       setGeneratedWebsites(uniqueTemplates);
       setCurrentStep(3);
       setIsLoading(false);
-      navigate("/scrape");
+      onNext();
     }, 1500);
-  };
-
-  const handleBack = () => {
-    navigate("/");
   };
 
   const handleImproveWithAI = async () => {
@@ -98,9 +90,6 @@ const DescribePage: React.FC = () => {
       setIsLoading(false);  
     }
   };
-
-
-
 
   return (
     <div className="min-h-screen flex flex-col bg-secondary">
@@ -148,7 +137,7 @@ const DescribePage: React.FC = () => {
           <div className="flex justify-between">
             <Button
               variant="outline"
-              onClick={handleBack}
+              onClick={onBack}
               className="flex items-center gap-1"
               disabled={isLoading}
             >
