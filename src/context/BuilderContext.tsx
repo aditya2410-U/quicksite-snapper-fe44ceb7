@@ -57,11 +57,13 @@ export const BuilderProvider: React.FC<{ children: ReactNode }> = ({ children })
   const [referenceUrl, setReferenceUrl] = useState("");
 
   const toggleTemplateSelection = (templateId: string) => {
-    setSelectedTemplates(prev => 
-      prev.includes(templateId) 
-        ? prev.filter(id => id !== templateId) 
+    setSelectedTemplates(prev => {
+      const updatedSelection = prev.includes(templateId)
+        ? prev.filter(id => id !== templateId)
         : [...prev, templateId]
-    );
+      localStorage.setItem('selectedTemplates', JSON.stringify(updatedSelection));
+      return updatedSelection;
+    });
   };
 
   return (

@@ -14,12 +14,12 @@ import { cn } from "@/lib/utils";
 
 const WebsiteForm: React.FC = () => {
   const navigate = useNavigate();
-  const { 
-    websiteName, 
-    setWebsiteName, 
-    businessType, 
-    setBusinessType, 
-    language, 
+  const {
+    websiteName,
+    setWebsiteName,
+    businessType,
+    setBusinessType,
+    language,
     setLanguage,
     scrapeUrl,
     setScrapeUrl,
@@ -35,7 +35,7 @@ const WebsiteForm: React.FC = () => {
     if (!websiteName || !businessType) {
       return;
     }
-    
+
     setCurrentStep(2);
     navigate("/describe");
   };
@@ -46,7 +46,7 @@ const WebsiteForm: React.FC = () => {
       <p className="text-gray-600 mb-8 text-center">
         Please share some basic details of the website to get started.
       </p>
-      
+
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
           <Label htmlFor="website-name" className="text-sm font-medium">
@@ -56,12 +56,15 @@ const WebsiteForm: React.FC = () => {
             id="website-name"
             placeholder="Enter name or title of the website"
             value={websiteName}
-            onChange={(e) => setWebsiteName(e.target.value)}
+            onChange={(e) => {
+              localStorage.setItem('websiteName', e.target.value);
+              setWebsiteName(e.target.value)
+            }}
             required
             className="w-full"
           />
         </div>
-        
+
         <div className="space-y-2">
           <Label htmlFor="business-type" className="text-sm font-medium">
             This website is for: <span className="text-red-500">*</span>
@@ -89,6 +92,7 @@ const WebsiteForm: React.FC = () => {
                         key={type}
                         value={type}
                         onSelect={() => {
+                          localStorage.setItem('businessType', type);
                           setBusinessType(type as BusinessType);
                           setOpen(false);
                         }}
@@ -108,14 +112,17 @@ const WebsiteForm: React.FC = () => {
             </PopoverContent>
           </Popover>
         </div>
-        
+
         <div className="space-y-2">
           <Label htmlFor="language" className="text-sm font-medium">
             This website will be in:
           </Label>
-          <Select 
-            value={language} 
-            onValueChange={setLanguage}
+          <Select
+            value={language}
+            onValueChange={(newLanguage) => {
+              setLanguage(newLanguage);
+              localStorage.setItem('language', newLanguage);
+            }}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select language" />
@@ -159,9 +166,9 @@ const WebsiteForm: React.FC = () => {
           />
           <p className="text-xs text-gray-500">Enter a website that has a design style you like</p>
         </div> */}
-        
-        <Button 
-          type="submit" 
+
+        <Button
+          type="submit"
           className="w-full bg-primary hover:bg-primary/90"
           disabled={!websiteName || !businessType}
         >

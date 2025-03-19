@@ -30,6 +30,7 @@ const DescribePage: React.FC = () => {
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     if (value.length <= MAX_CHARS) {
+      localStorage.setItem("description", value);
       setDescription(value);
       setCharacterCount(value.length);
     }
@@ -52,6 +53,7 @@ const DescribePage: React.FC = () => {
           const keywordTemplates = findTemplatesByKeyword(keyword);
           templates = [...templates, ...keywordTemplates];
         }
+        localStorage.setItem("matchedKeyword", keywords[0]);
         setMatchedKeyword(keywords[0]);
       }
 
@@ -75,6 +77,7 @@ const DescribePage: React.FC = () => {
         .filter(Boolean) as typeof templates;
 
       setGeneratedWebsites(uniqueTemplates);
+      localStorage.setItem("generatedWebsites", JSON.stringify(uniqueTemplates));
       setCurrentStep(3);
       setIsLoading(false);
       navigate("/scrape");
@@ -90,6 +93,7 @@ const DescribePage: React.FC = () => {
 
     try {
       const improvedDescription = await chatgpt_api.improveDescription(description);
+      localStorage.setItem("description", improvedDescription);
       setDescription(improvedDescription);
       setCharacterCount(improvedDescription.length);  
     } catch (error) {
