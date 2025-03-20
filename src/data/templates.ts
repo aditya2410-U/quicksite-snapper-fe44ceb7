@@ -36,7 +36,7 @@ export const TEMPLATES: Template[] = [
     name: "PDHome Classic",
     keywords: ["pdhome", "pd-home"],
     description: "A sleek, professional home decor website with elegant styling and intuitive navigation.",
-    previewImage: "/lovable-uploads/pdhomeclassic.png",
+    previewImage: "/lovable-uploads/pdhome_classic.png",
     demoUrl: "http://pdhomeclassic.wizcommerce.com/",
     referenceUrl: "pdhome.com"
   },
@@ -45,7 +45,7 @@ export const TEMPLATES: Template[] = [
     name: "PDHome Modern",
     keywords: ["pdhome", "pd-home"],
     description: "A bright, contemporary home furnishings site with a focus on showcasing products beautifully.",
-    previewImage: "/lovable-uploads/pdhomemodern.png",
+    previewImage: "/lovable-uploads/pdhome_modern.png",
     demoUrl: "https://pdhomemodern.wizcommerce.com/",
     referenceUrl: "pdhome.com"
   },
@@ -54,13 +54,13 @@ export const TEMPLATES: Template[] = [
     name: "PDHome Premium",
     keywords: ["pdhome", "pd-home"],
     description: "A luxury premium template for established home decor businesses with advanced features.",
-    previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
-    demoUrl: "https://pdhome.wizcommerce.com",
+    previewImage: "/lovable-uploads/pdhome_premium.png",
+    demoUrl: "https://pdhomepremium.wizcommerce.com/",
     isPremium: true,
     referenceUrl: "pdhome.com"
   },
   {
-    id: "pdhome-3",
+    id: "pdhome-4",
     name: "PDHome Vintage",
     keywords: ["pdhome", "pd-home"],
     description: "A luxury premium template for established home decor businesses with advanced features.",
@@ -70,7 +70,7 @@ export const TEMPLATES: Template[] = [
     referenceUrl: "pdhome.com"
   },
   {
-    id: "pdhome-3",
+    id: "pdhome-5",
     name: "PDHome Plus",
     keywords: ["pdhome", "pd-home"],
     description: "A luxury premium template for established home decor businesses with advanced features.",
@@ -86,8 +86,8 @@ export const TEMPLATES: Template[] = [
     name: "Freyrs Classic",
     keywords: ["freyrs", "freyr"],
     description: "A stylish eyewear e-commerce site with elegant design and smooth shopping experience.",
-    previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
-    demoUrl: "https://freyrs1.example.com",
+    previewImage: "/lovable-uploads/freyrs_classic.png",
+    demoUrl: "https://freyrsclassic.wizcommerce.com/",
     referenceUrl: "freyrs.com"
   },
   {
@@ -95,8 +95,8 @@ export const TEMPLATES: Template[] = [
     name: "Freyrs Modern",
     keywords: ["freyrs", "freyr"],
     description: "A contemporary eyewear website with cutting-edge design and seamless mobile experience.",
-    previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
-    demoUrl: "https://freyrs2.example.com",
+    previewImage: "/lovable-uploads/freyrs_modern.png",
+    demoUrl: "https://freyrsmodern.wizcommerce.com/",
     referenceUrl: "freyrs.com"
   },
   {
@@ -110,7 +110,7 @@ export const TEMPLATES: Template[] = [
     referenceUrl: "freyrs.com"
   },
   {
-    id: "freyrs-3",
+    id: "freyrs-4",
     name: "Freyrs vintage",
     keywords: ["freyrs", "freyr"],
     description: "A premium eyewear site template with advanced filtering and product showcase features.",
@@ -120,7 +120,7 @@ export const TEMPLATES: Template[] = [
     referenceUrl: "freyrs.com"
   },
   {
-    id: "freyrs-3",
+    id: "freyrs-5",
     name: "Freyrs plus",
     keywords: ["freyrs", "freyr"],
     description: "A premium eyewear site template with advanced filtering and product showcase features.",
@@ -136,8 +136,8 @@ export const TEMPLATES: Template[] = [
     name: "CWI Lightning Classic",
     keywords: ["antique curiosties", "antiquecuriosities"],
     description: "A vintage-styled e-commerce site perfect for antique stores and collectors.",
-    previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
-    demoUrl: "https://antiquecuriosities1.example.com",
+    previewImage: "/lovable-uploads/cwi_classic.png",
+    demoUrl: "https://cwilightingclassic.wizcommerce.com/",
     referenceUrl: "antiquecuriosities.com"
   },
   {
@@ -145,8 +145,8 @@ export const TEMPLATES: Template[] = [
     name: "CWI Lightning Modern",
     keywords: ["antique curiosties", "antiquecuriosities"],
     description: "A contemporary template for antique businesses with a clean, professional appearance.",
-    previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
-    demoUrl: "https://antiquecuriosities2.example.com",
+    previewImage: "/lovable-uploads/cwi_modern.png",
+    demoUrl: "https://cwilightingmodern.wizcommerce.com/",
     referenceUrl: "antiquecuriosities.com"
   },
   {
@@ -154,13 +154,13 @@ export const TEMPLATES: Template[] = [
     name: "CWI Lightning Premium",
     keywords: ["antique curiosties", "antiquecuriosities"],
     description: "A luxury template for high-end antique dealers with advanced catalog features.",
-    previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
-    demoUrl: "https://antiquecuriosities3.example.com",
+    previewImage: "/lovable-uploads/cwi_premium.png",
+    demoUrl: "https://cwilightingpremium.wizcommerce.com/",
     isPremium: true,
     referenceUrl: "antiquecuriosities.com"
   },
   {
-    id: "antique-3",
+    id: "antique-4",
     name: "CWI Lightning Vintage",
     keywords: ["antique curiosties", "antiquecuriosities"],
     description: "A luxury template for high-end antique dealers with advanced catalog features.",
@@ -170,7 +170,7 @@ export const TEMPLATES: Template[] = [
     referenceUrl: "antiquecuriosities.com"
   },
   {
-    id: "antique-3",
+    id: "antique-5",
     name: "CWI Lightning Plus",
     keywords: ["antique curiosties", "antiquecuriosities"],
     description: "A luxury template for high-end antique dealers with advanced catalog features.",
