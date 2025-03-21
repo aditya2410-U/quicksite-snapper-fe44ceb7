@@ -79,7 +79,7 @@ const TemplatePage: React.FC = () => {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                   <Input
                     className="pl-10"
-                    placeholder={`${matchedKeyword || "pdhome"}, freyrs, tufanrugs`}
+                    placeholder={`${matchedKeyword}`}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     disabled={isLoading}

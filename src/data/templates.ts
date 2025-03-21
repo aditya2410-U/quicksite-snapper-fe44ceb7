@@ -11,22 +11,20 @@ export interface Template {
   isPremium?: boolean;
 }
 
-export const KEYWORDS = ["pdhome", "antique curiosties", "tufanrugs", "freyrs", "mycasualspace"];
+export const KEYWORDS = ["pdhome", "freyrs", "cwilighting"];
 
 // Mapping between business types and keywords
 export const BUSINESS_TYPE_KEYWORDS = {
-  "HomeDecor": ["pdhome", "tufanrugs", "mycasualspace"],
+  "HomeDecor": ["pdhome"],
   "Wearables": ["freyrs"],
-  "Lighting": ["antique curiosties"]
+  "Lighting": ["cwilighting"]
 };
 
 // Define recognizable URL patterns for each keyword
 export const REFERENCE_URLS: Record<string, string[]> = {
   "pdhome": ["pdhome", "pd-home", "pdhome.com", "pdhome.wizcommerce"],
   "freyrs": ["freyrs", "freyrs.com", "freyr.com"],
-  "tufanrugs": ["tufanrugs", "tufan-rugs", "tufanrug", "tufanrugs.com"],
-  "antique curiosties": ["antiquecuriosities", "antique-curiosities", "antiquecuriosities.com"],
-  "mycasualspace": ["mycasualspace", "my-casual-space", "mycasualspace.com"]
+  "cwilighting": ["cwilighting", "cwi-lighting", "https://cwilighting.wizcommerce.com/"],
 };
 
 export const TEMPLATES: Template[] = [
@@ -34,7 +32,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "pdhome-1",
     name: "PDHome Classic",
-    keywords: ["pdhome", "pd-home"],
+    keywords: ["pdhome", "pd-home","PD Home", "PDHome"],
     description: "A sleek, professional home decor website with elegant styling and intuitive navigation.",
     previewImage: "/lovable-uploads/pdhome_classic.png",
     demoUrl: "http://pdhomeclassic.wizcommerce.com/",
@@ -43,7 +41,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "pdhome-2",
     name: "PDHome Modern",
-    keywords: ["pdhome", "pd-home"],
+    keywords: ["pdhome", "pd-home","PD Home", "PDHome"],
     description: "A bright, contemporary home furnishings site with a focus on showcasing products beautifully.",
     previewImage: "/lovable-uploads/pdhome_modern.png",
     demoUrl: "https://pdhomemodern.wizcommerce.com/",
@@ -52,7 +50,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "pdhome-3",
     name: "PDHome Premium",
-    keywords: ["pdhome", "pd-home"],
+    keywords: ["pdhome", "pd-home","PD Home", "PDHome"],
     description: "A luxury premium template for established home decor businesses with advanced features.",
     previewImage: "/lovable-uploads/pdhome_premium.png",
     demoUrl: "https://pdhomepremium.wizcommerce.com/",
@@ -62,7 +60,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "pdhome-4",
     name: "PDHome Vintage",
-    keywords: ["pdhome", "pd-home"],
+    keywords: ["pdhome", "pd-home","PD Home", "PDHome"],
     description: "A luxury premium template for established home decor businesses with advanced features.",
     previewImage: "/lovable-uploads/pdhome_vintage.png",
     demoUrl: "https://pdhomevintage.wizcommerce.com/",
@@ -72,7 +70,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "pdhome-5",
     name: "PDHome Plus",
-    keywords: ["pdhome", "pd-home"],
+    keywords: ["pdhome", "pd-home","PD Home", "PDHome"],
     description: "A luxury premium template for established home decor businesses with advanced features.",
     previewImage: "/lovable-uploads/pdhome_plus.png",
     demoUrl: "https://pdhomeplus.wizcommerce.com/",
@@ -84,7 +82,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "freyrs-1",
     name: "Freyrs Classic",
-    keywords: ["freyrs", "freyr"],
+    keywords: ["freyrs", "freyr","Freyrs"],
     description: "A stylish eyewear e-commerce site with elegant design and smooth shopping experience.",
     previewImage: "/lovable-uploads/freyrs_classic.png",
     demoUrl: "https://freyrsclassic.wizcommerce.com/",
@@ -93,7 +91,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "freyrs-2",
     name: "Freyrs Modern",
-    keywords: ["freyrs", "freyr"],
+    keywords: ["freyrs", "freyr","Freyrs"],
     description: "A contemporary eyewear website with cutting-edge design and seamless mobile experience.",
     previewImage: "/lovable-uploads/freyrs_modern.png",
     demoUrl: "https://freyrsmodern.wizcommerce.com/",
@@ -102,7 +100,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "freyrs-3",
     name: "Freyrs Premium",
-    keywords: ["freyrs", "freyr"],
+    keywords: ["freyrs", "freyr","Freyrs"],
     description: "A premium eyewear site template with advanced filtering and product showcase features.",
     previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
     demoUrl: "https://freyrs3.example.com",
@@ -112,7 +110,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "freyrs-4",
     name: "Freyrs vintage",
-    keywords: ["freyrs", "freyr"],
+    keywords: ["freyrs", "freyr","Freyrs"],
     description: "A premium eyewear site template with advanced filtering and product showcase features.",
     previewImage: "/lovable-uploads/freyrs_vintage.png",
     demoUrl: "https://freyrsvintage.wizcommerce.com/",
@@ -122,7 +120,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "freyrs-5",
     name: "Freyrs plus",
-    keywords: ["freyrs", "freyr"],
+    keywords: ["freyrs", "freyr","Freyrs"],
     description: "A premium eyewear site template with advanced filtering and product showcase features.",
     previewImage: "/lovable-uploads/freyrs_plus.png",
     demoUrl: "https://freyrsplus.wizcommerce.com/",
@@ -130,115 +128,57 @@ export const TEMPLATES: Template[] = [
     referenceUrl: "freyrs.com"
   },
   
-  // Antique Curiosities Templates
+
   {
-    id: "antique-1",
+    id: "cwilighting-1",
     name: "CWI Lightning Classic",
-    keywords: ["antique curiosties", "antiquecuriosities"],
+    keywords: ["cwilighting", "CWI Lightning","CWI","cwi"],
     description: "A vintage-styled e-commerce site perfect for antique stores and collectors.",
     previewImage: "/lovable-uploads/cwi_classic.png",
     demoUrl: "https://cwilightingclassic.wizcommerce.com/",
-    referenceUrl: "antiquecuriosities.com"
+    referenceUrl: "cwilighting.com"
   },
   {
-    id: "antique-2",
+    id: "cwilighting-2",
     name: "CWI Lightning Modern",
-    keywords: ["antique curiosties", "antiquecuriosities"],
+    keywords: ["cwilighting", "CWI Lightning","CWI","cwi"],
     description: "A contemporary template for antique businesses with a clean, professional appearance.",
     previewImage: "/lovable-uploads/cwi_modern.png",
     demoUrl: "https://cwilightingmodern.wizcommerce.com/",
-    referenceUrl: "antiquecuriosities.com"
+    referenceUrl: "cwilighting.com"
   },
   {
-    id: "antique-3",
+    id: "cwilighting-3",
     name: "CWI Lightning Premium",
-    keywords: ["antique curiosties", "antiquecuriosities"],
+    keywords: ["cwilighting", "CWI Lightning","CWI","cwi"],
     description: "A luxury template for high-end antique dealers with advanced catalog features.",
     previewImage: "/lovable-uploads/cwi_premium.png",
     demoUrl: "https://cwilightingpremium.wizcommerce.com/",
     isPremium: true,
-    referenceUrl: "antiquecuriosities.com"
+    referenceUrl: "cwilighting.com"
   },
   {
-    id: "antique-4",
+    id: "cwilighting-4",
     name: "CWI Lightning Vintage",
-    keywords: ["antique curiosties", "antiquecuriosities"],
+    keywords: ["cwilighting", "CWI Lightning","CWI","cwi"],
     description: "A luxury template for high-end antique dealers with advanced catalog features.",
     previewImage: "/lovable-uploads/cwi_vintage.png",
     demoUrl: "https://cwilightingvintage.wizcommerce.com/",
     isPremium: true,
-    referenceUrl: "antiquecuriosities.com"
+    referenceUrl: "cwilighting.com"
   },
   {
-    id: "antique-5",
+    id: "cwilighting-5",
     name: "CWI Lightning Plus",
-    keywords: ["antique curiosties", "antiquecuriosities"],
+    keywords: ["cwilighting", "CWI Lightning","CWI","cwi"],
     description: "A luxury template for high-end antique dealers with advanced catalog features.",
     previewImage: "/lovable-uploads/cwi_plus.png",
     demoUrl: "https://cwilightingplus.wizcommerce.com/",
     isPremium: true,
-    referenceUrl: "antiquecuriosities.com"
+    referenceUrl: "cwilighting.com"
   },
   
-  // Tufan Rugs Templates
-  {
-    id: "tufanrugs-1",
-    name: "Tufan Rugs Classic",
-    keywords: ["tufanrugs", "tufan-rugs", "tufanrug"],
-    description: "An elegant template for rug retailers with beautiful product showcasing.",
-    previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
-    demoUrl: "https://tufanrugs1.example.com",
-    referenceUrl: "tufanrugs.com"
-  },
-  {
-    id: "tufanrugs-2",
-    name: "Tufan Rugs Modern",
-    keywords: ["tufanrugs", "tufan-rugs", "tufanrug"],
-    description: "A modern, responsive design for rug e-commerce with advanced filtering.",
-    previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
-    demoUrl: "https://tufanrugs2.example.com",
-    referenceUrl: "tufanrugs.com"
-  },
-  {
-    id: "tufanrugs-3",
-    name: "Tufan Rugs Premium",
-    keywords: ["tufanrugs", "tufan-rugs", "tufanrug"],
-    description: "A premium template for high-end rug retailers with 3D viewing capabilities.",
-    previewImage: "/lovable-uploads/d4549dc3-4c11-4ef4-89b3-46b263848296.png",
-    demoUrl: "https://tufanrugs3.example.com",
-    isPremium: true,
-    referenceUrl: "tufanrugs.com"
-  },
   
-  // My Casual Space Templates
-  {
-    id: "mycasualspace-1",
-    name: "My Casual Space Classic",
-    keywords: ["mycasualspace", "my-casual-space"],
-    description: "A clean, minimalist furniture site template with intuitive navigation.",
-    previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
-    demoUrl: "https://mycasualspace1.example.com",
-    referenceUrl: "mycasualspace.com"
-  },
-  {
-    id: "mycasualspace-2",
-    name: "My Casual Space Modern",
-    keywords: ["mycasualspace", "my-casual-space"],
-    description: "A contemporary furniture and lifestyle site with advanced product showcasing.",
-    previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
-    demoUrl: "https://mycasualspace2.example.com",
-    referenceUrl: "mycasualspace.com"
-  },
-  {
-    id: "mycasualspace-3",
-    name: "My Casual Space Premium",
-    keywords: ["mycasualspace", "my-casual-space"],
-    description: "A premium home decor and furniture template with interior design visualization tools.",
-    previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
-    demoUrl: "https://mycasualspace3.example.com",
-    isPremium: true,
-    referenceUrl: "mycasualspace.com"
-  }
 ];
 
 // Function to find templates by keyword

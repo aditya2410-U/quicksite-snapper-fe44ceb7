@@ -16,7 +16,7 @@ const Index: React.FC = () => {
             <h1 className="text-3xl font-bold text-gray-900 mb-4">Website Builder</h1>
             <p className="text-lg text-gray-600">
               Create stunning websites for businesses like PDHome, Freyrs, 
-              Tufan Rugs, and more in minutes!
+              Cwilighting, and more in minutes!
             </p>
           </div>
           <WebsiteForm />
