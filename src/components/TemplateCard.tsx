@@ -29,6 +29,7 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ template }) => {
         <Badge 
           variant="default" 
           className="absolute top-4 right-4 bg-gradient-to-r from-primary to-purple-600 z-10"
+          style={{ zIndex: 1 }}
         >
           PREMIUM
         </Badge>
