@@ -11,7 +11,7 @@ export interface Template {
   isPremium?: boolean;
 }
 
-export const KEYWORDS = ["pdhome", "freyrs", "cwilighting"];
+export const KEYWORDS = ["pdhome", "freyrs", "cwilighting","pd home", "freyr", "cwi lighting", "cwi"];
 
 // Mapping between business types and keywords
 export const BUSINESS_TYPE_KEYWORDS = {
@@ -64,7 +64,7 @@ export const TEMPLATES: Template[] = [
     description: "A luxury premium template for established home decor businesses with advanced features.",
     previewImage: "/lovable-uploads/pdhome_vintage.png",
     demoUrl: "https://pdhomevintage.wizcommerce.com/",
-    isPremium: true,
+    
     referenceUrl: "pdhome.com"
   },
   {
@@ -74,7 +74,7 @@ export const TEMPLATES: Template[] = [
     description: "A luxury premium template for established home decor businesses with advanced features.",
     previewImage: "/lovable-uploads/pdhome_plus.png",
     demoUrl: "https://pdhomeplus.wizcommerce.com/",
-    isPremium: true,
+  
     referenceUrl: "pdhome.com"
   },
   
@@ -102,7 +102,7 @@ export const TEMPLATES: Template[] = [
     name: "Freyrs Premium",
     keywords: ["freyrs", "freyr","Freyrs"],
     description: "A premium eyewear site template with advanced filtering and product showcase features.",
-    previewImage: "/lovable-uploads/12867516-caee-4cb7-90b0-f1c721cc101c.png",
+    previewImage: "/lovable-uploads/freyrspremium.png",
     demoUrl: "https://freyrs3.example.com",
     isPremium: true,
     referenceUrl: "freyrs.com"
@@ -114,7 +114,6 @@ export const TEMPLATES: Template[] = [
     description: "A premium eyewear site template with advanced filtering and product showcase features.",
     previewImage: "/lovable-uploads/freyrs_vintage.png",
     demoUrl: "https://freyrsvintage.wizcommerce.com/",
-    isPremium: true,
     referenceUrl: "freyrs.com"
   },
   {
@@ -124,7 +123,6 @@ export const TEMPLATES: Template[] = [
     description: "A premium eyewear site template with advanced filtering and product showcase features.",
     previewImage: "/lovable-uploads/freyrs_plus.png",
     demoUrl: "https://freyrsplus.wizcommerce.com/",
-    isPremium: true,
     referenceUrl: "freyrs.com"
   },
   
@@ -164,7 +162,6 @@ export const TEMPLATES: Template[] = [
     description: "A luxury template for high-end antique dealers with advanced catalog features.",
     previewImage: "/lovable-uploads/cwi_vintage.png",
     demoUrl: "https://cwilightingvintage.wizcommerce.com/",
-    isPremium: true,
     referenceUrl: "cwilighting.com"
   },
   {
@@ -174,7 +171,6 @@ export const TEMPLATES: Template[] = [
     description: "A luxury template for high-end antique dealers with advanced catalog features.",
     previewImage: "/lovable-uploads/cwi_plus.png",
     demoUrl: "https://cwilightingplus.wizcommerce.com/",
-    isPremium: true,
     referenceUrl: "cwilighting.com"
   },
   
